@@ -60,12 +60,27 @@ function GetImages({ cards, setCards, score, setScore }) {
           bestScore: newBestScore,
         };
       });
-      console.log(score);
     } else {
       const updatedArray = cards.map((card) => ({ ...card, status: false }));
       setCards(updatedArray);
       setScore({ ...score, currentScore: 0 });
     }
+    shuffleCards(cards);
+  }
+
+  function shuffleCards(randomCards) {
+    let currentIndex = cards.length;
+
+    while (currentIndex != 0) {
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [randomCards[currentIndex], randomCards[randomIndex]] = [
+        randomCards[randomIndex],
+        randomCards[currentIndex],
+      ];
+    }
+    setCards(cards);
   }
 
   return (
