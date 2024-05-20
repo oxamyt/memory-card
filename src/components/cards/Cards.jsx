@@ -60,12 +60,13 @@ function GetImages({ cards, setCards, score, setScore }) {
           bestScore: newBestScore,
         };
       });
+      shuffleCards(cards);
     } else {
       const updatedArray = cards.map((card) => ({ ...card, status: false }));
       setCards(updatedArray);
       setScore({ ...score, currentScore: 0 });
+      shuffleCards(updatedArray);
     }
-    shuffleCards(cards);
   }
 
   function shuffleCards(randomCards) {
@@ -80,7 +81,7 @@ function GetImages({ cards, setCards, score, setScore }) {
         randomCards[currentIndex],
       ];
     }
-    setCards(cards);
+    setCards(randomCards);
   }
 
   return (
