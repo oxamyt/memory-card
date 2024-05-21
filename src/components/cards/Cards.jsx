@@ -1,7 +1,7 @@
 import "../../styles/Cards.css";
 import { useEffect } from "react";
 
-function GetImages({ cards, setCards, score, setScore }) {
+function GetImages({ cards, setCards, score, setScore, setDisplay }) {
   useEffect(() => {
     const pokemonNames = [
       "zekrom",
@@ -47,7 +47,6 @@ function GetImages({ cards, setCards, score, setScore }) {
     const clickedArray = cards.filter((card) => card.id === index);
     const clicked = clickedArray[0];
 
-    console.log(clicked);
     if (!clicked.status) {
       clicked.status = true;
       setCards([...cards]);
@@ -64,7 +63,7 @@ function GetImages({ cards, setCards, score, setScore }) {
     } else {
       const updatedArray = cards.map((card) => ({ ...card, status: false }));
       setCards(updatedArray);
-      setScore({ ...score, currentScore: 0 });
+      setDisplay(true);
       shuffleCards(updatedArray);
     }
   }
